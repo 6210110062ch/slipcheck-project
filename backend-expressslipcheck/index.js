@@ -2,12 +2,15 @@ const express = require('express');
 const axios = require('axios');
 const multer = require('multer');
 const FormData = require('form-data');
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage })
+
+app.use(cors());
 
 app.post('/slipcheck', upload.single('files'), async(req, res) => {
     const file = req.file;
